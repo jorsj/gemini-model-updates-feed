@@ -2,6 +2,12 @@
 
 A deterministic Python tool that monitors the [Gemini API deprecation page](https://ai.google.dev/gemini-api/docs/deprecations) for changes and publishes updates as a [JSON Feed 1.1](https://www.jsonfeed.org/version/1.1/).
 
+## Live Feed
+
+If you just want to consume the feed instead of deploying your own instance to GCP, a live version is automatically maintained and publicly available here:
+
+`https://storage.googleapis.com/gemini-tracker-data-sandcastle-401718/data/feed.json`
+
 ## What it tracks
 
 | Change type | Description |
