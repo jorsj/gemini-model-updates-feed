@@ -14,7 +14,7 @@ DEPRECATING_SOON_DAYS = 90
 class Change:
     """One detected change between snapshots."""
 
-    change_type: str   # "new_model" | "deleted_model" | "deprecation_date_changed" | "deprecating_soon"
+    change_type: str  # "new_model" | "deleted_model" | "deprecation_date_changed" | "deprecating_soon"
     model: str
     category: str
     summary: str
@@ -93,7 +93,8 @@ def diff_snapshots(
                     model=row.model,
                     category=row.category,
                     summary=f"New model added: {row.model}.",
-                    new_value=_format_date(row.shutdown_date) or "No shutdown date announced",
+                    new_value=_format_date(row.shutdown_date)
+                    or "No shutdown date announced",
                     deprecation_date=_format_date_iso(row.shutdown_date),
                 )
             )

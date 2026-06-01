@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-import json
 from datetime import date, datetime, timezone
-from pathlib import Path
 
 import httpx
 
 import storage
 from differ import Change, diff_snapshots
-from parser import ModelRow, parse_deprecation_page
+from parser import parse_deprecation_page
 
 DEPRECATION_URL = "https://ai.google.dev/gemini-api/docs/deprecations.md.txt"
 
@@ -91,7 +89,9 @@ def generate_feed(changes: list[Change]) -> tuple[str, int]:
     }
 
     if storage._BUCKET_NAME:
-        feed["feed_url"] = f"https://storage.googleapis.com/{storage._BUCKET_NAME}/data/feed.json"
+        feed["feed_url"] = (
+            f"https://storage.googleapis.com/{storage._BUCKET_NAME}/data/feed.json"
+        )
 
     # Merge with existing feed history
     old_feed = storage.read_json(FEED_FILE)

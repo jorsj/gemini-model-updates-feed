@@ -18,9 +18,14 @@ _LOCAL_DATA_DIR = Path(__file__).resolve().parent / "data"
 
 def _gcs_client():
     """Lazy-import the GCS client so it's only required in Cloud Run."""
-    from google.cloud import storage  # type: ignore[import-untyped]
+    from google.cloud import storage
+    import google.auth
 
-    return storage.Client()
+    # Explicitly request the cloud-platform scope to avoid legacy scope issues
+    credentials, project = google.auth.default(
+        scopes=["https://www.googleapis.com/auth/cloud-platform"]
+    )
+    return storage.Client(credentials=credentials, project=project)
 
 
 def _gcs_blob(filename: str):

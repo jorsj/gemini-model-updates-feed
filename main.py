@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-import json
-import sys
 
 from tools import run_pipeline
 

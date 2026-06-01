@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import date
 
 
@@ -14,9 +14,18 @@ _DATE_RE = re.compile(
 )
 
 _MONTH_MAP: dict[str, int] = {
-    "January": 1, "February": 2, "March": 3, "April": 4,
-    "May": 5, "June": 6, "July": 7, "August": 8,
-    "September": 9, "October": 10, "November": 11, "December": 12,
+    "January": 1,
+    "February": 2,
+    "March": 3,
+    "April": 4,
+    "May": 5,
+    "June": 6,
+    "July": 7,
+    "August": 8,
+    "September": 9,
+    "October": 10,
+    "November": 11,
+    "December": 12,
 }
 
 
@@ -35,11 +44,11 @@ def _parse_date(text: str) -> date | None:
 class ModelRow:
     """One row from a deprecation table."""
 
-    model: str                          # e.g. "gemini-2.5-flash"
-    category: str                       # the `## ` heading, e.g. "Gemini 3 models"
+    model: str  # e.g. "gemini-2.5-flash"
+    category: str  # the `## ` heading, e.g. "Gemini 3 models"
     release_date: date | None = None
     shutdown_date: date | None = None
-    shutdown_date_raw: str = ""         # original text, for display
+    shutdown_date_raw: str = ""  # original text, for display
     replacement: str = ""
 
     def key(self) -> str:
